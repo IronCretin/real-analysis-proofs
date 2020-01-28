@@ -12,3 +12,10 @@ Definition IsUpperBound {A} {LT} {_ : TotalOrder A LT} (E : Ensemble A) (b: A)
 
 Definition IsLeastUpperBound {A} {LT} {_ : TotalOrder A LT} (E : Ensemble A) (b: A)
   := IsUpperBound E b /\ (forall c, b = c /\ IsUpperBound E c -> LT b c).
+
+
+Definition IsLowerBound {A} {LT} {_ : TotalOrder A LT} (E : Ensemble A) (b: A)
+  := forall a, In _ E a -> LT b a.
+
+Definition IsGreatestLowerBound {A} {LT} {_ : TotalOrder A LT} (E : Ensemble A) (b: A)
+  := IsLowerBound E b /\ (forall c, b = c /\ IsLowerBound E c -> LT c b).
